@@ -153,6 +153,10 @@ function security(req, res, next){
     }
 }
 
+app.get('/', (req, res) => {
+    res.json({ asd: 'asd' });
+})
+
 app.listen(( process.env.PORT || 4202 ));
 
 
