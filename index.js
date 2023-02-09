@@ -157,6 +157,11 @@ app.get('/', (req, res) => {
     res.json({ asd: 'asd' });
 })
 
+app.post('/catch_data', (req, res) => {
+    const { full_name, email, message } = req.query.data;
+    res.json({ full_name: full_name, email: email, message: message });
+});
+
 app.listen(( process.env.PORT || 4202 ));
 
 
