@@ -158,7 +158,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/catch_data', (req, res) => {
-    const { full_name, email, message } = req.query.data;
+    const { full_name, email, message } = req.body.data;
     res.json({ full_name: full_name, email: email, message: message });
 });
 
