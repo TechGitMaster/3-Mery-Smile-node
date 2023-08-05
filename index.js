@@ -107,24 +107,12 @@ app.post ('/login', (req, res) => {
     const { username, password } = req.body;
     var token = jwt.sign(process.env.TOKEN_FOR, process.env.ACCESS_TOKEN_SECRET);
 
-    firebase.database().ref('users').once('value', function(snapshot){
-        let admins = snapshot.val();
-	    let admins_data = admins['admin'];
-
-        if(username === admins_data['Email Address'] && password === admins_data['pass']){
-        firebase.auth().createUserWithEmailAndPassword(username + "@gmail.com", password)
-            .then((userCredential) => {
-
-                res.json({ response: 'success', token: token })
-            }).catch((error) => {
-                
-                res.json({ response: 'success', token: token })
-            });	
-        }else{
+    if(username === 'admin' && password === 'admin'){
+		res.json({ response: 'success', token: token })
+	}else{
             console.log('no-record')
             res.json({ response: 'no-record' })
         }
-    });
     
 });
 
